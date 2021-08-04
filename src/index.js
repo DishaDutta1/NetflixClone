@@ -1,10 +1,20 @@
-import "./styles.css";
+let accordian = document.getElementsByClassName("FAQ__title");
 
-document.getElementById("app").innerHTML = `
-<h1>Hello Vanilla!</h1>
-<div>
-  We use the same configuration as Parcel to bundle this sandbox, you can find more
-  info about Parcel 
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
-</div>
-`;
+for (let i = 0; i < accordian.length; i++) {
+  accordian[i].addEventListener("click", function () {
+    if (this.childNodes[1].classList.contains("fa-plus")) {
+      this.childNodes[1].classList.remove("fa-plus");
+      this.childNodes[1].classList.add("fa-times");
+    } else {
+      this.childNodes[1].classList.remove("fa-times");
+      this.childNodes[1].classList.add("fa-plus");
+    }
+
+    let content = this.nextElementSibling;
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
